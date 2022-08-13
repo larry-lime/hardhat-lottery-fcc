@@ -40,8 +40,6 @@ developmentChains.includes(network.name)
                 await expect(raffle.getPlayer(0)).to.be.reverted
                 assert.equal(recentWinner.toString(), accounts[0].address)
                 assert.equal(raffleState, 0)
-                console.log(raffleEntranceFee.toString())
-                console.log(winnerEndingBalance.toString())
                 assert.equal(
                   winnerEndingBalance.toString(),
                   winnerStartingBalance.add(raffleEntranceFee).toString()
@@ -59,7 +57,6 @@ developmentChains.includes(network.name)
             await tx.wait(1)
             console.log('Ok, time to wait...')
             const winnerStartingBalance = await accounts[0].getBalance()
-            console.log(winnerStartingBalance.toString())
             // And this code WONT complete until our listener has finished listening
           })
         })
