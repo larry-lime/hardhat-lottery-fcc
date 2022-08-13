@@ -4,6 +4,7 @@ const { verify } = require('../utils/verify')
 
 const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther('2')
 
+// getNamedAccounts and deployments are hardhat environment extensions
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
@@ -24,7 +25,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
       VRF_SUB_FUND_AMOUNT
     )
   } else {
-    vrfCoordinatorV2Address = networkConfig[chainId]['vrfCoordinatorV2']
+    vrfCoordinatorV2Address = networkConfig[chainId]['vrfCoordinatorV2Address']
     subscriptionId = networkConfig[chainId]['subscriptionId']
   }
 

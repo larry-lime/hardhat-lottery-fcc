@@ -5,10 +5,10 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
 
-error Raffle__UpkeepNotNeeded( uint256 currentBalance, uint256 numPlayers, uint256 raffleState);
+error Raffle__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint256 raffleState);
 error Raffle__NotEnoughETHEntered();
 error Raffle__TransferFailed();
-error Raffle__NotOpen();
+error Raffle__RaffleNotOpen();
 
 /// @title A sample raffle contract
 /// @author Lawrence Lim
@@ -68,10 +68,11 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
             revert Raffle__NotEnoughETHEntered();
         }
         if (s_raffleState != RaffleState.OPEN) {
-            revert Raffle__NotOpen();
+            revert Raffle__RaffleNotOpen();
         }
         s_players.push(payable(msg.sender));
         // Emit an event when we update a dynamic array or mapping
+        emit RaffleEnter(msg.sender);
     }
 
     /// @dev This is a function that the Chainlink Keeper nodes call they look for the `unkeepNeeded` to return true.
@@ -145,28 +146,35 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         return i_entranceFee;
     }
 
-    function getPlayer() public view returns (uint256) {
-        return i_entranceFee;
+    function getPlayer(uint256 index) public view returns (address) {
+        return s_players[index];
     }
 
     function getRecentWinner() public view returns (address) {
         return s_recentWinner;
     }
 
-    function getRaffleState( ) view public returns (RaffleState) {
+    function getRaffleState() public view returns (RaffleState) {
         return s_raffleState;
     }
 
-    function getNumWords( ) pure public returns (uint256) {
+    function getNumWords() public pure returns (uint256) {
         return NUM_WORDS;
     }
 
-    function getNumberOfPlayers( ) view public returns (uint256) {
+    function getLastTimeStamp() public view returns (uint256) {
         return s_lastTimeStamp;
     }
 
-    function getRequestConfirmations( ) pure public returns (uint256) {
+    function getRequestConfirmations() public pure returns (uint256) {
         return REQUEST_CONFIRMATIONS;
     }
 
+    function getInterval() public view returns (uint256) {
+        return i_interval;
+    }
+
+    function getNumberOfPlayers() public view returns (uint256) {
+        return s_players.length;
+    }
 }
