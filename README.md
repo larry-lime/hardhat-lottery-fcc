@@ -1,26 +1,22 @@
-# Smart Contract Lottery
-
 ## About The Project
 
-My Ethereum Crowd Funding project is full stack decentralized application built who's [backend](https://github.com/larry-lime/fund-me-backend) is built with Solidity and the Hardhat Ethereum development framework. Tests are done with Mocha & Chai in Javascript. Additionally, it utilizes Chainlink pricefeed oracles and its [frontend](https://github.com/larry-lime/solidity-js-fcc) is coded in vanilla HTML/CSS and Javascript. This project was created as a part of Patrick Collin's Solidity and Javascript smart contract course with Free Code Camp.
+My Smart Conract Raffle project is the Solidity smart contract backend of automated and decentralized raffle. The DApp utilizes verifiable random numbers from Chainlink VRFs and uses Chainlink keepers to update or "upkeep" the live contract to maintain the integrity of the raffle. This project was created as a part of Patrick Collin's Solidity and Javascript smart contract course with Free Code Camp.
 
 ## Getting Started
 
 ### Prerequisites
 
 * [yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
-* [metamask](https://metamask.io/download/) 
-* [live-server](https://www.npmjs.com/package/live-server) 
 
 ### Installation
 
 1. Clone the repo (backend)
 ```shell
-git clone https://github.com/larry-lime/fund-me-backend.git
+git clone https://github.com/larry-lime/smart-contract-raffle-backend.git
 ```
 2. Run yarn
 ```shell
-cd fund-me-backend && yarn
+cd smart-contract-raffle-backend && yarn
 ```
 
 ## Usage
@@ -37,20 +33,13 @@ cd fund-me-backend && yarn
   ```shell
   yarn hardhat deploy
   ```
-####  Interact with frontend
-  1. Spin-up node
-  ```shell
-  yarn hardhat node
-  ```
-  2. Git clone frontend repo
-  ```shell
-  git clone https://github.com/larry-lime/solidity-js-fcc.git
-  cd fund-me-html
-  ```
-  3. Start live-server
-  ```shell
-  npx live-server
-  ```
+####  Interact with live contract
+
+1. Go to the [rinkeby etherscan contract ID](https://rinkeby.etherscan.io/address/0xB2Bf3C63C8aFD537a76fD346Ab88a24B6C76aAf5) 
+2. Next, click on "Contract"
+3. Then, click on "Read Contract" and then interact with the functions in the form to read state values and data from the contract
+4. Finally, click on "Write Contract" and connect web3 to write and interact with the live contract.
+
 <!-- The contract deployment ID is: -->
 <!-- ``` -->
 <!-- 0xB2Bf3C63C8aFD537a76fD346Ab88a24B6C76aAf5 -->
