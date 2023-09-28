@@ -1,5 +1,7 @@
 ## About The Project
 
+⛔️ Project is Now Depricated ⛔️
+
 My Smart Contract Raffle project is the Solidity smart contract backend of automated and decentralized raffle. The DApp utilizes verifiable random numbers from Chainlink VRFs and uses Chainlink keepers to update or "upkeep" the live contract to maintain the integrity of the raffle.
 
 ## Getting Started
